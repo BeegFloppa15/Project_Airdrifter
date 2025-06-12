@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://0a23uy3u3iee"]
 
-[ext_resource type="Script" uid="uid://b7xgup6yy5vh2" path="res://glider_v_2.gd" id="1_f15xp"]
+[ext_resource type="Script" uid="uid://xu4g8u8yki33" path="res://Gliders/CharacterGlider.gd" id="1_y6s1q"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_x5gwl"]
 size = Vector3(1, 0.135, 4)
@@ -21,7 +21,7 @@ size = Vector3(1.285, 0.98, 1.73)
 size = Vector3(2.68408, 0.900146, 1)
 
 [node name="Glider V2" type="CharacterBody3D"]
-script = ExtResource("1_f15xp")
+script = ExtResource("1_y6s1q")
 
 [node name="Mesh" type="Node3D" parent="."]
 
