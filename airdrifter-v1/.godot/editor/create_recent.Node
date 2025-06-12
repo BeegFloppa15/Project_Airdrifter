@@ -1,0 +1,13 @@
+MeshInstance3D
+WorldEnvironment
+CharacterBody3D
+Node3D
+Label
+Control
+Camera3D
+RayCast3D
+CollisionShape3D
+StaticBody3D
+DirectionalLight3D
+RigidBody3D
+Node

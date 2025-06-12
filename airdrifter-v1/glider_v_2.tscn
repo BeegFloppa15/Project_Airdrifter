@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://0a23uy3u3iee"]
+
+[ext_resource type="Script" uid="uid://b7xgup6yy5vh2" path="res://glider_v_2.gd" id="1_f15xp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x5gwl"]
+size = Vector3(1, 0.135, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f15xp"]
+albedo_color = Color(0.1302, 0.62, 0.17918, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f15xp"]
+material = SubResource("StandardMaterial3D_f15xp")
+height = 2.99
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t61do"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_1sn8n"]
+size = Vector3(1.285, 0.98, 1.73)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x5gwl"]
+size = Vector3(2.68408, 0.900146, 1)
+
+[node name="Glider V2" type="CharacterBody3D"]
+script = ExtResource("1_f15xp")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="Wing" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_x5gwl")
+skeleton = NodePath("../..")
+
+[node name="Body" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0.32711, 0)
+mesh = SubResource("CapsuleMesh_f15xp")
+skeleton = NodePath("../..")
+
+[node name="Arrow" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(3.62316e-16, -1.85862e-08, -0.147661, -0.189626, -1.85862e-08, 0, -8.28882e-09, 0.425203, -6.45447e-09, 0, 0.150445, 1.51316)
+mesh = SubResource("CylinderMesh_t61do")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Arrow"]
+transform = Transform3D(1, -1.42109e-14, 0, 3.55271e-15, 1, 0, 0, 0, 1, 0, 1.46402, 0)
+mesh = SubResource("PrismMesh_1sn8n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0754395, 0.298218, 0)
+shape = SubResource("BoxShape3D_x5gwl")
+debug_fill = false

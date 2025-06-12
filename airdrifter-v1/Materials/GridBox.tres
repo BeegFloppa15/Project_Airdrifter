@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bhf6anoy7ga0a"]
+
+[ext_resource type="Texture2D" uid="uid://f2xu5qrlxbol" path="res://Textures/templategrid/TemplateGrid_albedo.png" id="1_oqnl7"]
+[ext_resource type="Texture2D" uid="uid://dyupxqx13pryt" path="res://Textures/templategrid/TemplateGrid_normal.png" id="2_vjq2g"]
+[ext_resource type="Texture2D" uid="uid://cmopds4evm4sa" path="res://Textures/templategrid/TemplateGrid_orm.png" id="3_y00vx"]
+
+[resource]
+albedo_texture = ExtResource("1_oqnl7")
+roughness_texture = ExtResource("3_y00vx")
+normal_enabled = true
+normal_texture = ExtResource("2_vjq2g")

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://daa4md30g68ha"]
+
+[ext_resource type="Script" uid="uid://cfc8c5i2jjf1" path="res://Gliders/PhysicsGlider.gd" id="1_fv0t4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eub4b"]
+bounce = 0.22
+
+[sub_resource type="BoxMesh" id="BoxMesh_5gnin"]
+size = Vector3(1, 0.135, 4)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6xacn"]
+height = 2.99
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_eub4b"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_fv0t4"]
+size = Vector3(1.285, 0.98, 1.73)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ol6t0"]
+size = Vector3(2.68408, 0.900146, 1)
+
+[node name="Glider V1" type="RigidBody3D"]
+mass = 1.159
+physics_material_override = SubResource("PhysicsMaterial_eub4b")
+linear_velocity = Vector3(0, 0, 100)
+linear_damp = 0.75
+script = ExtResource("1_fv0t4")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="Wing" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_5gnin")
+skeleton = NodePath("../..")
+
+[node name="Body" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0.32711, 0)
+mesh = SubResource("CapsuleMesh_6xacn")
+skeleton = NodePath("../..")
+
+[node name="Arrow" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(3.62316e-16, -1.85862e-08, -0.147661, -0.189626, -1.85862e-08, 0, -8.28882e-09, 0.425203, -6.45447e-09, 0, 0.150445, 1.51316)
+mesh = SubResource("CylinderMesh_eub4b")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Arrow"]
+transform = Transform3D(1, -1.42109e-14, 0, 3.55271e-15, 1, 0, 0, 0, 1, 0, 1.46402, 0)
+mesh = SubResource("PrismMesh_fv0t4")
+
+[node name="3rdPerCamera" type="Camera3D" parent="."]
+transform = Transform3D(-1, -1.13133e-08, 8.59334e-08, 1.13133e-08, 0.965926, 0.258819, -8.59334e-08, 0.258819, -0.965926, 0, 2, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0754395, 0.298218, 0)
+shape = SubResource("BoxShape3D_ol6t0")
+debug_fill = false
