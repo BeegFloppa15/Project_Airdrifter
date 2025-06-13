@@ -28,9 +28,11 @@ size = Vector3(2000, 2000, 2000)
 transform = Transform3D(-1, -1.6988e-08, 8.57563e-08, 2.26267e-08, 0.89722, 0.441584, -8.44439e-08, 0.441584, -0.89722, 0.732899, 26.0978, -12.671)
 
 [node name="Glider V1" parent="." instance=ExtResource("1_pr04o")]
-transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -4, 16.8696, 1)
+transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -13, 16.8696, 1)
 mass = 30.0
+linear_velocity = Vector3(0, 0, 100)
 linear_damp = 0.5
+use_this_cam = true
 
 [node name="Glider V2" parent="." instance=ExtResource("4_nvn2u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 18, 0)
@@ -119,7 +121,6 @@ mesh = SubResource("BoxMesh_5fhe2")
 shape = SubResource("BoxShape3D_7hcdr")
 
 [node name="Debug UI" type="Control" parent="." node_paths=PackedStringArray("glider_object")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
