@@ -1,8 +1,0 @@
-res://testing_scene_1.tscn
-res://Materials/GridBox.tres
-res://Gliders/glider_v_1.tscn
-res://Gliders/glider_v_2.tscn
-res://Gliders/PhysicsGlider.gd
-res://Scripts/Physics_Glider_2.gd
-res://debug_ui.gd
-res://Scripts/sad.gd

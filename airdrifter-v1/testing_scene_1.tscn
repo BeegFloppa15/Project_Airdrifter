@@ -29,13 +29,11 @@ transform = Transform3D(-1, -1.69879e-08, 8.57563e-08, 2.26267e-08, 0.89722, 0.4
 
 [node name="Glider V1" parent="." instance=ExtResource("1_pr04o")]
 transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -13, 16.8696, 1)
-mass = 10.0
 linear_damp = 0.5
 use_this_cam = true
 
 [node name="Glider V3" parent="." instance=ExtResource("1_pr04o")]
 transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -22, 16.8696, 1)
-mass = 30.0
 linear_damp = 0.5
 
 [node name="Glider V2" parent="." instance=ExtResource("4_nvn2u")]
@@ -187,4 +185,48 @@ text = ":Angle of Attack"
 environment = SubResource("Environment_pr04o")
 
 [node name="World Cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 997)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1004, 0, 0)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1004, 0, 997)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -999, 0, 0)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -989)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2989)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3986)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2000)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1004, 0, -989)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -999, 0, -989)
+mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="World Cube6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -999, 0, 997)
 mesh = SubResource("BoxMesh_7hcdr")

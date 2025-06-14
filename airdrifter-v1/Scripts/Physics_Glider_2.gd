@@ -5,6 +5,7 @@ extends RigidBody3D
 @export var rotation_rate: float = 50;
 @export var forward_velocity: Vector3
 
+
 func _ready() -> void:
 	if use_this_cam:
 		$"3rdPerCamera".make_current()
