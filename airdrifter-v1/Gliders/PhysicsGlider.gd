@@ -24,12 +24,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
 	#Changing the direction of the current velocity to go where the glider is pointing
 	new_velo = forward_vector * current_velo.length()
-	new_velo.y += current_velo.y
+	state.apply_central_force(implement_lift(new_velo))
 	
 	#TODO: Implement drag to prevent the glider from accelerating out of control
 	#TODO: Implement lift 
 	
-	state.linear_velocity = new_velo
+	#state.linear_velocity = new_velo
 	
 	# Adding Lift (effected by horizontal velocity)
 	#state.linear_velocity.y += calculate_lift(state).y
@@ -43,6 +43,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	#forward_vector.clamp(Vector3(-INF, 0, -INF), Vector3.INF)
 	#state.linear_velocity += forward_vector
 		
+
+func implement_lift(velocity: Vector3) -> Vector3:
+	# Finding Local Up Direction
+	var up_vector = (global_transform.basis * Vector3(0, 1, 0)).normalized()
+	up_vector *= velocity.length()
+	return up_vector
 	
 
 func calculate_lift(state: PhysicsDirectBodyState3D) -> Vector3:
