@@ -32,9 +32,9 @@ axis_lock_angular_z = true
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_eub4b")
 linear_damp_mode = 1
-linear_damp = 0.75
 script = ExtResource("1_fv0t4")
 angle_acceleration_curve = SubResource("Curve_fv0t4")
+minimum_speed = 200.0
 
 [node name="Mesh" type="Node3D" parent="."]
 
@@ -58,7 +58,7 @@ transform = Transform3D(1, -1.42109e-14, 0, 3.55271e-15, 1, 0, 0, 0, 1, 0, 1.464
 mesh = SubResource("PrismMesh_fv0t4")
 
 [node name="3rdPerCamera" type="Camera3D" parent="."]
-transform = Transform3D(-1, -1.13133e-08, 8.59334e-08, 1.13133e-08, 0.965926, 0.258819, -8.59334e-08, 0.258819, -0.965926, 0, 2, -3)
+transform = Transform3D(-1, -1.13134e-08, 8.59334e-08, 1.13133e-08, 0.965926, 0.258819, -8.59334e-08, 0.258819, -0.965926, 0, 2, -3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0754395, 0.298218, 0)

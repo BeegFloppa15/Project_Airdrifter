@@ -5,6 +5,7 @@ extends RigidBody3D
 @export var angle_acceleration_curve: Curve
 @export var forward_velocity: Vector3
 @export var acceleration : float = 0.0
+@export var minimum_speed : float = 50
 
 func _ready() -> void:
 	if use_this_cam:
@@ -32,10 +33,21 @@ func _physics_process(delta: float) -> void:
 	# dot product between the forward direction and Vector3.UP: 
 	#dot > 0 means glider pointed down
 	#dot < 0 means glider pointed up
-	acceleration += angle_acceleration_curve.sample(Vector3.UP.dot(forward_dir)) * 25
+	acceleration += angle_acceleration_curve.sample(Vector3.UP.dot(forward_dir))  * 25
 	if acceleration < 0:
 		acceleration *= -1.0
 	
-	apply_central_force(forward_dir * acceleration)
+	# Applying the force just a few degrees upwards from flat
+	#var force_dir = forward_dir.rotated((global_transform.basis * Vector3(-1, 0, 0)).normalized(), deg_to_rad(5))
+	
+	apply_central_force(forward_dir * max(acceleration, minimum_speed))
 	
 	forward_velocity = linear_velocity.project(forward_dir)
+	apply_central_force(find_lift(forward_velocity))
+
+func find_lift(forward_velocity: Vector3):
+	var max_lift = 50.0;
+	var up_dir = forward_velocity.normalized().rotated((global_transform.basis * Vector3(-1, 0, 0)).normalized(), deg_to_rad(90))
+	var lift_force = min(forward_velocity.length() * 0.7, max_lift) 
+	return up_dir * lift_force
+	
