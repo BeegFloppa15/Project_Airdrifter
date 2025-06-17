@@ -37,10 +37,14 @@ func _physics_process(delta: float) -> void:
 	if acceleration < 0:
 		acceleration *= -1.0
 	
-	# Applying the force just a few degrees upwards from flat
-	#var force_dir = forward_dir.rotated((global_transform.basis * Vector3(-1, 0, 0)).normalized(), deg_to_rad(5))
-	
-	apply_central_force(forward_dir * max(acceleration, minimum_speed))
+	# If acceleration is lower than some minimum speed, push the plane HORIZONTALLY forward by the min speed
+	if acceleration < minimum_speed:
+		var bruh_vector = forward_dir
+		bruh_vector.y = 0
+		apply_central_force(bruh_vector * minimum_speed * 4)
+	# Otherwise, just push the plane forward horz and vert
+	else:
+		apply_central_force(forward_dir * acceleration)
 	
 	forward_velocity = linear_velocity.project(forward_dir)
 	apply_central_force(find_lift(forward_velocity))
