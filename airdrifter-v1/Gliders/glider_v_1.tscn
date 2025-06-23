@@ -26,12 +26,11 @@ size = Vector3(1.285, 0.98, 1.73)
 size = Vector3(2.68408, 0.900146, 1)
 
 [node name="Glider V1" type="RigidBody3D"]
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_eub4b")
+inertia = Vector3(50, 50, 50)
 linear_damp_mode = 1
+angular_damp = 7.0
 script = ExtResource("1_fv0t4")
 angle_acceleration_curve = SubResource("Curve_fv0t4")
 
