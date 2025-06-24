@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://dea40058w1g6m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6064"]
+cull_mode = 2
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h6064"]
+lightmap_size_hint = Vector2i(4, 27)
+material = SubResource("StandardMaterial3D_h6064")
+size = Vector2(1.985, 5)
+subdivide_width = 20
+subdivide_depth = 50
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6064"]
+size = Vector3(8, 5, 13)
+
+[node name="Testing Scene 2 Wind" type="Node"]
+
+[node name="SoftBody3D" type="SoftBody3D" parent="."]
+mesh = SubResource("PlaneMesh_h6064")
+total_mass = 5.01
+pinned_points = [1135, 1134, 1133, 1132, 1131, 1130]
+attachments/0/point_index = 1135
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 1134
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 1133
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 1132
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 1131
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 1130
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+
+[node name="SoftBody3D2" type="SoftBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.655)
+mesh = SubResource("PlaneMesh_h6064")
+total_mass = 5.01
+pinned_points = [1135, 1134, 1133, 1132, 1131, 1130]
+attachments/0/point_index = 1135
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 1134
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 1133
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 1132
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 1131
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 1130
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.353553, 0.612373, 0, 0.866026, 0.5, -0.707107, -0.353553, 0.612373, 5, 4, 2)
+current = true
+size = 13.0
+
+[node name="Wind Source" type="Marker3D" parent="."]
+transform = Transform3D(-0.688354, -0.351668, 0.634427, 0, 0.87462, 0.48481, -0.725374, 0.333721, -0.602048, 5, 0, -2)
+gizmo_extents = 1.0
+
+[node name="Area3D" type="Area3D" parent="."]
+wind_force_magnitude = 10.0
+wind_source_path = NodePath("../Wind Source")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -3)
+shape = SubResource("BoxShape3D_h6064")
+
+[node name="Top Down Cam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12, -3)
+projection = 1
+size = 10.95
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -19, 2, 0)
