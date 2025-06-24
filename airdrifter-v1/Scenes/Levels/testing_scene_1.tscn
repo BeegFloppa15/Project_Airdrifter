@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=12 format=3 uid="uid://dp4pv4tev41gr"]
 
-[ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_pr04o"]
-[ext_resource type="Material" uid="uid://bhf6anoy7ga0a" path="res://Materials/GridBox.tres" id="2_5fhe2"]
-[ext_resource type="Script" uid="uid://d0gthejuvixfb" path="res://debug_ui.gd" id="2_7hcdr"]
-[ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="4_nvn2u"]
+[ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
+[ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
+[ext_resource type="Script" uid="uid://d0gthejuvixfb" path="res://debug_ui.gd" id="3_dmsko"]
+[ext_resource type="Material" uid="uid://bhf6anoy7ga0a" path="res://Materials/GridBox.tres" id="4_1m6sy"]
+[ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="5_hi084"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr04o"]
 albedo_color = Color(0.37, 0.32782, 0.1591, 1)
@@ -18,25 +19,24 @@ size = Vector3(20, 0.225, 20)
 [sub_resource type="Environment" id="Environment_pr04o"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7hcdr"]
-material = ExtResource("2_5fhe2")
+material = ExtResource("4_1m6sy")
 flip_faces = true
 size = Vector3(1000, 1000, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmsko"]
+size = Vector3(20, 4, 18)
 
 [node name="Testing Scene 1" type="Node"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, -1.69879e-08, 8.57563e-08, 2.26267e-08, 0.89722, 0.441584, -8.44439e-08, 0.441584, -0.89722, -15.2671, 26.0978, -12.671)
 
-[node name="Glider V1" parent="." instance=ExtResource("1_pr04o")]
-transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -13, 16.8696, 1)
+[node name="Glider V1" parent="." instance=ExtResource("1_ub46j")]
+transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, 0, 0.8696, -5)
 linear_damp = 0.5
 use_this_cam = true
 
-[node name="Glider V3" parent="." instance=ExtResource("1_pr04o")]
-transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -22, 16.8696, 1)
-linear_damp = 0.5
-
-[node name="Glider V2" parent="." instance=ExtResource("4_nvn2u")]
+[node name="Glider V2" parent="." instance=ExtResource("2_hi084")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 18, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -129,7 +129,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_7hcdr")
+script = ExtResource("3_dmsko")
 glider_object = NodePath("../Glider V1")
 
 [node name="AltitudeLabel" type="Label" parent="Debug UI"]
@@ -230,3 +230,15 @@ mesh = SubResource("BoxMesh_7hcdr")
 [node name="World Cube6" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -999, 0, 997)
 mesh = SubResource("BoxMesh_7hcdr")
+
+[node name="Wind Area" parent="." instance=ExtResource("5_hi084")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+wind_force_magnitude = 100.0
+wind_source_path = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wind Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_dmsko")
+
+[node name="Marker3D" type="Marker3D" parent="Wind Area"]
+transform = Transform3D(1, 0, 0, 0, -5.96046e-08, -1, 0, 1, -8.9407e-08, -5, 0, 0)

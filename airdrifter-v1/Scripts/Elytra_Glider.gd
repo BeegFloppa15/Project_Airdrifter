@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name ElytraGlider
 
 @export var use_this_cam: bool = false
 @export var rotation_rate: float = 50
