@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=13 format=3 uid="uid://dp4pv4tev41gr"]
 
 [ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
 [ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
@@ -26,13 +26,16 @@ size = Vector3(1000, 1000, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmsko"]
 size = Vector3(20, 4, 18)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hi084"]
+size = Vector3(121, 86, 128)
+
 [node name="Testing Scene 1" type="Node"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, -1.69879e-08, 8.57563e-08, 2.26267e-08, 0.89722, 0.441584, -8.44439e-08, 0.441584, -0.89722, -15.2671, 26.0978, -12.671)
 
 [node name="Glider V1" parent="." instance=ExtResource("1_ub46j")]
-transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, 0, 0.8696, -5)
+transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, 37, -18.1304, 6)
 linear_damp = 0.5
 use_this_cam = true
 
@@ -242,3 +245,29 @@ shape = SubResource("BoxShape3D_dmsko")
 
 [node name="Marker3D" type="Marker3D" parent="Wind Area"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, -1, 0, 1, -8.9407e-08, -5, 0, 0)
+
+[node name="Wind Areas" type="Node" parent="."]
+
+[node name="Wind Area" parent="Wind Areas" instance=ExtResource("5_hi084")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, -125, 920)
+wind_force_magnitude = 300.0
+wind_source_path = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wind Areas/Wind Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 64.5, -872)
+shape = SubResource("BoxShape3D_hi084")
+
+[node name="Marker3D" type="Marker3D" parent="Wind Areas/Wind Area"]
+transform = Transform3D(1, 0, 0, 0, -0.965926, -0.258819, 0, 0.258819, -0.965926, 0, 22, -830)
+
+[node name="Wind Area2" parent="Wind Areas" instance=ExtResource("5_hi084")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, -125, 105)
+wind_force_magnitude = 300.0
+wind_source_path = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wind Areas/Wind Area2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 64.5, 9)
+shape = SubResource("BoxShape3D_hi084")
+
+[node name="Marker3D" type="Marker3D" parent="Wind Areas/Wind Area2"]
+transform = Transform3D(-4.37114e-08, -0.258819, 0.965926, 0, -0.965926, -0.258819, 1, -1.13133e-08, 4.2222e-08, 0, 22, 51)

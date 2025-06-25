@@ -23,17 +23,18 @@ func _ready() -> void:
 # By default, physics process is inactive.
 # When the Glider enters the area, phys_process activates, and a force is put on the glider
 # When the Glider leaves the area, phys_process deactivates, and the force no longer is applied
-#func _physics_process(delta: float) -> void:
-	#if player_glider == null:
-		#return
+func _physics_process(delta: float) -> void:
+	if player_glider == null:
+		return
+	player_glider.apply_central_force(wind_direction * wind_force_magnitude)
 	
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is ElytraGlider:
 		player_glider = body
-		player_glider.add_constant_central_force(wind_direction * wind_force_magnitude)
+		set_physics_process(true)
 
 
 func _on_body_exited(body: Node3D) -> void:
 	if body == player_glider:
-		player_glider.constant_force = Vector3(0,0,0)
+		set_physics_process(false)

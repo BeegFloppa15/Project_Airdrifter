@@ -8,12 +8,15 @@ class_name ElytraGlider
 @export var forward_velocity: Vector3
 @export var acceleration : float = 0.0
 @export var minimum_speed : float = 50
+var actual_min_speed : float
 
 func _ready() -> void:
 	if use_this_cam:
 		$"3rdPerCamera".make_current()
 	else:
 		$"3rdPerCamera".queue_free()
+	
+	actual_min_speed = minimum_speed
 
 func _physics_process(delta: float) -> void:
 	
@@ -46,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	if acceleration < minimum_speed:
 		var bruh_vector = forward_dir
 		bruh_vector.y = 0
-		apply_central_force(bruh_vector * minimum_speed * 4)
+		apply_central_force(bruh_vector * actual_min_speed)
 	# Otherwise, just push the plane forward horz and vert
 	else:
 		apply_central_force(forward_dir * acceleration)
@@ -64,3 +67,8 @@ func find_lift(forward_velocity: Vector3):
 	var lift_force = min(forward_velocity.length() * 0.7, max_lift) 
 	return up_dir * lift_force
 	
+func remove_min_speed():
+	actual_min_speed = 0
+
+func reset_min_speed():
+	actual_min_speed = minimum_speed

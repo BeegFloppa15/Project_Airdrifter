@@ -33,6 +33,7 @@ linear_damp_mode = 1
 angular_damp = 7.0
 script = ExtResource("1_fv0t4")
 angle_acceleration_curve = SubResource("Curve_fv0t4")
+minimum_speed = 100.0
 
 [node name="Mesh" type="Node3D" parent="."]
 
