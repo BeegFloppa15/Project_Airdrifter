@@ -8,8 +8,8 @@ absorbent = true
 
 [sub_resource type="Curve" id="Curve_fv0t4"]
 _limits = [-1.0, 1.0, -1.0, 1.0]
-_data = [Vector2(-1, 1), 0.0, -0.407153, 0, 0, Vector2(0, 0), -2.98579, -2.98579, 0, 0, Vector2(1, -1), -0.790634, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(-1, 1), 0.0, -1.0, 0, 1, Vector2(1, -1), -1.0, 0.0, 1, 0]
+point_count = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_5gnin"]
 size = Vector3(1, 0.135, 4)

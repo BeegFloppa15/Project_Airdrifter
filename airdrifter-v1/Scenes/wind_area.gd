@@ -26,7 +26,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if player_glider == null:
 		return
-	player_glider.apply_central_force(wind_direction * wind_force_magnitude)
+	player_glider.affect_by_wind(wind_direction * wind_force_magnitude)
 	
 
 func _on_body_entered(body: Node3D) -> void:

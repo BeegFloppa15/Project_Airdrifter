@@ -66,6 +66,15 @@ func find_lift(forward_velocity: Vector3):
 	var up_dir = forward_velocity.normalized().rotated((global_transform.basis * Vector3(-1, 0, 0)).normalized(), deg_to_rad(90))
 	var lift_force = min(forward_velocity.length() * 0.7, max_lift) 
 	return up_dir * lift_force
+
+func affect_by_wind(wind_vector: Vector3):
+	# A unit vector of the direction the glider is pointed in
+	var forward_dir = forward_velocity.normalized()
+	# The projection of wind onto forward direction will increase or decrease acceleration
+	acceleration += (wind_vector.project(forward_dir).length() / mass)
+	# Apply all the other components of the wind vector as a normal force
+	apply_central_force(wind_vector.slide(forward_dir))
+	
 	
 func remove_min_speed():
 	actual_min_speed = 0
