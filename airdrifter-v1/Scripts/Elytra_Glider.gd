@@ -9,6 +9,7 @@ class_name ElytraGlider
 @export var acceleration : float = 0.0
 @export var minimum_speed : float = 50
 var actual_min_speed : float
+var areas_in = 0
 
 func _ready() -> void:
 	if use_this_cam:
@@ -41,13 +42,14 @@ func _physics_process(delta: float) -> void:
 	# dot product between the forward direction and Vector3.UP: 
 	#dot > 0 means glider pointed down
 	#dot < 0 means glider pointed up
-	acceleration += angle_acceleration_curve.sample(Vector3.UP.dot(forward_dir))  * 25
-	if acceleration < 0:
-		acceleration *= -1.0
+	if areas_in == 0:
+		acceleration += angle_acceleration_curve.sample(Vector3.UP.dot(forward_dir))  * 25
+		if acceleration < 0:
+			acceleration = 0
 	
 	# If acceleration is lower than some minimum speed, push the plane HORIZONTALLY forward by the min speed
-	if acceleration < minimum_speed:
-		var bruh_vector = forward_dir
+	if acceleration < minimum_speed and forward_velocity.length() < minimum_speed:
+		var bruh_vector = Vector3(forward_dir)
 		bruh_vector.y = 0
 		apply_central_force(bruh_vector * actual_min_speed)
 	# Otherwise, just push the plane forward horz and vert
@@ -61,8 +63,11 @@ func _physics_process(delta: float) -> void:
 	# to do deg_to_rad
 	rotation = rotation.clamp(Vector3(deg_to_rad(-85.0), -10, 0.0), Vector3(deg_to_rad(85.0), 10, 0.0))
 
+func change_areas_in(change: int):
+	areas_in += change
+
 func find_lift(forward_velocity: Vector3):
-	var max_lift = 50.0;
+	var max_lift = 30.0;
 	var up_dir = forward_velocity.normalized().rotated((global_transform.basis * Vector3(-1, 0, 0)).normalized(), deg_to_rad(90))
 	var lift_force = min(forward_velocity.length() * 0.7, max_lift) 
 	return up_dir * lift_force
@@ -71,7 +76,10 @@ func affect_by_wind(wind_vector: Vector3):
 	# A unit vector of the direction the glider is pointed in
 	var forward_dir = forward_velocity.normalized()
 	# The projection of wind onto forward direction will increase or decrease acceleration
-	acceleration += (wind_vector.project(forward_dir).length() / mass)
+	if forward_dir.dot(wind_vector) > 0:
+		acceleration += (wind_vector.project(forward_dir).length() / (mass * 5))
+	else:
+		acceleration -= (wind_vector.project(forward_dir).length() / (mass * 5))
 	# Apply all the other components of the wind vector as a normal force
 	apply_central_force(wind_vector.slide(forward_dir))
 	

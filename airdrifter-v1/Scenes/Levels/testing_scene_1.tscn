@@ -24,7 +24,7 @@ flip_faces = true
 size = Vector3(1000, 1000, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hi084"]
-size = Vector3(70, 300, 92)
+size = Vector3(70, 159, 377)
 
 [node name="Testing Scene 1" type="Node"]
 
@@ -33,6 +33,7 @@ transform = Transform3D(-1, -1.69879e-08, 8.57563e-08, 2.26267e-08, 0.89722, 0.4
 
 [node name="Glider V1" parent="." instance=ExtResource("1_ub46j")]
 transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, 37, -14.1304, -25)
+linear_velocity = Vector3(0, 0, 500)
 linear_damp = 0.5
 use_this_cam = true
 
@@ -181,6 +182,22 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 61
 text = ":Angle of Attack"
 
+[node name="AccelLabel" type="Label" parent="Debug UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -461.0
+offset_top = -154.0
+offset_right = 1.0
+offset_bottom = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 61
+text = ":\"Acceleration\""
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pr04o")
 
@@ -239,9 +256,9 @@ wind_force_magnitude = 500.0
 wind_source_path = NodePath("Marker3D")
 
 [node name="Marker3D" type="Marker3D" parent="Wind Areas/Wind Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 1, 0)
 gizmo_extents = 1.05
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wind Areas/Wind Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -70.5, 163.5)
 shape = SubResource("BoxShape3D_hi084")

@@ -32,9 +32,11 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body is ElytraGlider:
 		player_glider = body
+		player_glider.change_areas_in(1)
 		set_physics_process(true)
 
 
 func _on_body_exited(body: Node3D) -> void:
 	if body == player_glider:
 		set_physics_process(false)
+		player_glider.change_areas_in(-1)
