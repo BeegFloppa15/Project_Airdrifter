@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dea40058w1g6m"]
+[gd_scene load_steps=8 format=3 uid="uid://dea40058w1g6m"]
 
 [ext_resource type="Material" uid="uid://je3rbvgqmbs1" path="res://Materials/Debug_Cloth_Red.tres" id="1_nrpx1"]
 [ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="2_44e73"]
+[ext_resource type="Script" uid="uid://ji376dptnunu" path="res://Scripts/TestCharBody.gd" id="3_44e73"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h6064"]
 lightmap_size_hint = Vector2i(4, 27)
@@ -15,6 +16,8 @@ size = Vector3(8, 5, 13)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3lx50"]
 radius = 4.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nrpx1"]
 
 [node name="Testing Scene 2 Wind" type="Node"]
 
@@ -102,3 +105,12 @@ shape = SubResource("CylinderShape3D_3lx50")
 transform = Transform3D(0.5, 0.324419, 0.802965, 0, 0.927184, -0.374607, -0.866025, 0.187303, 0.463592, 2, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, 0)
+motion_mode = 1
+script = ExtResource("3_44e73")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_nrpx1")

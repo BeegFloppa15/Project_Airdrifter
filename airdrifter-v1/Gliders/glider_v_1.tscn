@@ -1,15 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://daa4md30g68ha"]
+[gd_scene load_steps=8 format=3 uid="uid://daa4md30g68ha"]
 
-[ext_resource type="Script" uid="uid://0tq0ygneolc" path="res://Scripts/Elytra_Glider.gd" id="1_fv0t4"]
+[ext_resource type="Script" uid="uid://cg1klm3q47wam" path="res://Gliders/ElytraGlider2.gd" id="1_fv0t4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eub4b"]
 bounce = 0.02
 absorbent = true
-
-[sub_resource type="Curve" id="Curve_fv0t4"]
-_limits = [-1.0, 1.0, -1.0, 1.0]
-_data = [Vector2(-1, 1), 0.0, -1.0, 0, 1, Vector2(1, -1), -1.0, -0.931224, 1, 1]
-point_count = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_5gnin"]
 size = Vector3(1, 0.135, 4)
@@ -32,8 +27,6 @@ inertia = Vector3(50, 50, 50)
 linear_damp_mode = 1
 angular_damp = 7.0
 script = ExtResource("1_fv0t4")
-angle_acceleration_curve = SubResource("Curve_fv0t4")
-minimum_speed = 100.0
 
 [node name="Mesh" type="Node3D" parent="."]
 

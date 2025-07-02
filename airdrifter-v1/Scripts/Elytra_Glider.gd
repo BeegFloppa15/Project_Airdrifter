@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 			acceleration = 0
 	
 	# If acceleration is lower than some minimum speed, push the plane HORIZONTALLY forward by the min speed
-	if acceleration < minimum_speed and forward_velocity.length() < minimum_speed:
+	if acceleration < minimum_speed:
 		var bruh_vector = Vector3(forward_dir)
 		bruh_vector.y = 0
 		apply_central_force(bruh_vector * actual_min_speed)

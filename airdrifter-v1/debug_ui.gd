@@ -1,6 +1,6 @@
 extends Control
 
-@export var glider_object : ElytraGlider
+@export var glider_object : ElytraGlider2
 
 func _process(delta: float) -> void:
 	$AltitudeLabel.set_text("Altitude: %0.2f" %glider_object.position.y)
