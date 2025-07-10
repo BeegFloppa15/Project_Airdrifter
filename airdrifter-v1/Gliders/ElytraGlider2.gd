@@ -41,6 +41,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
 	state.apply_central_force(find_lift(forward_velocity))
 	
+	#NOTE: this method was ment to solve the issue of the glider not losing altitude when it was pitched straight up
+	# However it's not really working and producing unexpected behaviors.
+	# calculate_stall(forward_velocity)
+	
 	old_forward_velo = state.linear_velocity.project(forward_dir)
 
 func _physics_process(delta: float) -> void:
@@ -48,8 +52,16 @@ func _physics_process(delta: float) -> void:
 	# to do deg_to_rad
 	rotation = rotation.clamp(Vector3(deg_to_rad(-85.0), -10, 0.0), Vector3(deg_to_rad(85.0), 10, 0.0))
 
+## Input: a vector3 that represents the glider's forward velocity.
+## If the forward velocity is slower than some stall threshold, force the glider to pitch down
+func calculate_stall(forward_velocity: Vector3):
+	var stall_speed = 10
+	if forward_velocity.length() < stall_speed:
+		var left_vector = (global_transform.basis * Vector3.MODEL_LEFT).normalized()
+		apply_torque(left_vector * ((rotation_torque/10) * stall_speed-forward_velocity.length()))
+
 func find_lift(forward_velocity: Vector3):
-	var max_lift = 30.0;
+	var max_lift = mass * 9.8;
 	var up_dir = forward_velocity.normalized().rotated((global_transform.basis * Vector3(-1, 0, 0)).normalized(), deg_to_rad(90))
 	#up_dir.x = 0
 	#up_dir.z = 0

@@ -37,15 +37,16 @@ func _physics_process(delta: float) -> void:
 	
 	# Forward direction of travel
 	var forward_local_axis: Vector3 = Vector3(0, 0, 1)
-	var forward_dir: Vector3 = (global_transform.basis * forward_local_axis).normalized()
+	var forward_dir: Vector3 = (global_transform.basis * forward_local_axis).normalized() 
 	
 	# dot product between the forward direction and Vector3.UP: 
 	#dot > 0 means glider pointed down
 	#dot < 0 means glider pointed up
-	if areas_in == 0:
-		acceleration += angle_acceleration_curve.sample(Vector3.UP.dot(forward_dir))  * 25
-		if acceleration < 0:
-			acceleration = 0
+	#if areas_in == 0:
+	#acceleration += angle_acceleration_curve.sample(Vector3.UP.dot(forward_dir))  * 25
+	acceleration -= Vector3.UP.dot(forward_dir) * 25
+	if acceleration < 0:
+		acceleration = 0
 	
 	# If acceleration is lower than some minimum speed, push the plane HORIZONTALLY forward by the min speed
 	if acceleration < minimum_speed:

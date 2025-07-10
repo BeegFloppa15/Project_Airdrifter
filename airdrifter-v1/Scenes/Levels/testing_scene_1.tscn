@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=14 format=3 uid="uid://dp4pv4tev41gr"]
 
 [ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
 [ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
 [ext_resource type="Script" uid="uid://d0gthejuvixfb" path="res://debug_ui.gd" id="3_dmsko"]
 [ext_resource type="Material" uid="uid://bhf6anoy7ga0a" path="res://Materials/GridBox.tres" id="4_1m6sy"]
 [ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="5_hi084"]
+[ext_resource type="PackedScene" uid="uid://chkn4lhq6i5m8" path="res://Scenes/tp_area.tscn" id="6_dmsko"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr04o"]
 albedo_color = Color(0.37, 0.32782, 0.1591, 1)
@@ -26,6 +27,9 @@ size = Vector3(1000, 1000, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hi084"]
 size = Vector3(70, 159, 377)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1m6sy"]
+size = Vector3(3000, 2, 6026)
+
 [node name="Testing Scene 1" type="Node"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -33,7 +37,6 @@ transform = Transform3D(-1, -1.69879e-08, 8.57563e-08, 2.26267e-08, 0.89722, 0.4
 
 [node name="Glider V1" parent="." instance=ExtResource("1_ub46j")]
 transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, 37, -14.1304, -25)
-linear_velocity = Vector3(0, 0, 250)
 use_this_cam = true
 
 [node name="Glider V2" parent="." instance=ExtResource("2_hi084")]
@@ -261,3 +264,16 @@ gizmo_extents = 1.05
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wind Areas/Wind Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -70.5, 163.5)
 shape = SubResource("BoxShape3D_hi084")
+
+[node name="TP_Debugging" type="Node" parent="."]
+
+[node name="TP_Area" parent="TP_Debugging" node_paths=PackedStringArray("height_marker") instance=ExtResource("6_dmsko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -503, 914)
+height_marker = NodePath("../Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TP_Debugging/TP_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, 513)
+shape = SubResource("BoxShape3D_1m6sy")
+
+[node name="Marker3D" type="Marker3D" parent="TP_Debugging"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 528, 0)

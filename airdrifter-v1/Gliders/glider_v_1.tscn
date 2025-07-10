@@ -25,6 +25,7 @@ mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_eub4b")
 inertia = Vector3(50, 50, 50)
 linear_damp_mode = 1
+linear_damp = 0.05
 angular_damp = 2.0
 script = ExtResource("1_fv0t4")
 
