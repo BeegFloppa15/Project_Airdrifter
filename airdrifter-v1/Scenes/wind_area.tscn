@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7q3mc7feqq3s"]
 
-[ext_resource type="Script" uid="uid://d1k0tmx72gybb" path="res://Scenes/wind_area.gd" id="1_ajvy3"]
+[ext_resource type="Script" uid="uid://b3tsqwwrt24gv" path="res://Scenes/wind_area_2.gd" id="1_ajvy3"]
 
 [sub_resource type="Curve" id="Curve_gt5j3"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.602418), -0.59175, 0.0, 0, 0]

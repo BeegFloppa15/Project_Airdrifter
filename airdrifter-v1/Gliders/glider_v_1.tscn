@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://daa4md30g68ha"]
+[gd_scene load_steps=10 format=3 uid="uid://daa4md30g68ha"]
 
 [ext_resource type="Script" uid="uid://cg1klm3q47wam" path="res://Gliders/ElytraGlider2.gd" id="1_fv0t4"]
+[ext_resource type="Script" uid="uid://cinbrttlmabq1" path="res://Gliders/Glider_Mesh_Rotater.gd" id="2_8s163"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eub4b"]
 bounce = 0.02
 absorbent = true
+
+[sub_resource type="Curve" id="Curve_6y5t4"]
+_limits = [-40.0, 40.0, -110.0, 110.0]
+_data = [Vector2(-110, 40), 0.0, -0.0721771, 0, 0, Vector2(110, -40), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_5gnin"]
 size = Vector3(1, 0.135, 4)
@@ -30,6 +36,8 @@ angular_damp = 2.0
 script = ExtResource("1_fv0t4")
 
 [node name="Mesh" type="Node3D" parent="."]
+script = ExtResource("2_8s163")
+rotation_curve = SubResource("Curve_6y5t4")
 
 [node name="Wing" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
