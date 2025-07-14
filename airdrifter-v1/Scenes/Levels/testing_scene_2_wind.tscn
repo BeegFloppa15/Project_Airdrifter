@@ -97,7 +97,6 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 wind_force_magnitude = 5.094
 wind_source_path = NodePath("Marker3D")
-debug_cloth = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wind Area"]
 shape = SubResource("CylinderShape3D_3lx50")

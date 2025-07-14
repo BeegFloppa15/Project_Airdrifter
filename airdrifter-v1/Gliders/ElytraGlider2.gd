@@ -13,9 +13,9 @@ var old_forward_velo: Vector3
 
 func _ready() -> void:
 	if use_this_cam:
-		$"3rdPerCamera".make_current()
+		$"CamRoot/Horz/Vert/3rdPerCamera".make_current()
 	else:
-		$"3rdPerCamera".queue_free()
+		$"CamRoot/Horz/Vert/3rdPerCamera".queue_free()
 	
 	old_forward_velo = Vector3.ZERO
 
