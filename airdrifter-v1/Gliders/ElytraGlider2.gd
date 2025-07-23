@@ -3,8 +3,8 @@ class_name ElytraGlider2
 
 ## If checked off, the scene will be displayed through the attatched camera
 @export var use_this_cam: bool = false
+## Higher Torque will result in the glider pitching and tunring faster
 @export var rotation_torque: float = 200
-#@export var angle_acceleration_curve: Curve
 var forward_dir: Vector3
 var old_forward_velo: Vector3
 @export var forward_velocity: Vector3
@@ -50,7 +50,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 func _physics_process(delta: float) -> void:
 	#Clamping values to stop unwanted rotational behavior (my silly billy ahh ahh keeps forgetting
 	# to do deg_to_rad
-	rotation = rotation.clamp(Vector3(deg_to_rad(-85.0), -10, 0.0), Vector3(deg_to_rad(85.0), 10, 0.0))
+	rotation = rotation.clamp(Vector3(deg_to_rad(-70.0), -10, 0.0), Vector3(deg_to_rad(70.0), 10, 0.0))
 
 ## Input: a vector3 that represents the glider's forward velocity.
 ## If the forward velocity is slower than some stall threshold, force the glider to pitch down

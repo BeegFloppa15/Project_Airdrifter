@@ -5,8 +5,7 @@
 [ext_resource type="Script" uid="uid://c2eejtchhy414" path="res://Scripts/cam_root.gd" id="3_6y5t4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eub4b"]
-bounce = 0.02
-absorbent = true
+friction = 5.0
 
 [sub_resource type="Curve" id="Curve_6y5t4"]
 _limits = [-40.0, 40.0, -110.0, 110.0]
@@ -25,9 +24,10 @@ height = 2.99
 size = Vector3(1.285, 0.98, 1.73)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ol6t0"]
-size = Vector3(2.68408, 0.900146, 1)
+size = Vector3(2.68408, 0.951355, 1)
 
 [node name="Glider V1" type="RigidBody3D"]
+collision_mask = 14
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_eub4b")
 inertia = Vector3(50, 50, 50)
@@ -60,7 +60,7 @@ transform = Transform3D(1, -1.42109e-14, 0, 3.55271e-15, 1, 0, 0, 0, 1, 0, 1.464
 mesh = SubResource("PrismMesh_fv0t4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0754395, 0.298218, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0754395, 0.272614, 0)
 shape = SubResource("BoxShape3D_ol6t0")
 debug_fill = false
 
@@ -68,7 +68,6 @@ debug_fill = false
 script = ExtResource("3_6y5t4")
 
 [node name="Horz" type="Node3D" parent="CamRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Vert" type="Node3D" parent="CamRoot/Horz"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.664672, -5.94263e-08)
