@@ -8,3 +8,11 @@ func _process(delta: float) -> void:
 	$"AoA Label".set_text("%0.2f : Pitch" %glider_object.rotation_degrees.x)
 	$AirspeedLabel.set_text("Forward Airspeed: %0.2f" %glider_object.forward_velocity.length())
 	$AccelLabel.set_text("%0.2f : Acceleration" %glider_object.acceleration)
+	var status_text: String
+	if glider_object.current_state == 0:
+		status_text = "Flying"
+	elif glider_object.current_state == 1:
+		status_text = "Rolling"
+	else:
+		status_text = "Grounded"
+	$StatusLabel.set_text(status_text)
