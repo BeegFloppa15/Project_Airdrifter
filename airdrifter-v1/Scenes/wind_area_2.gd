@@ -20,13 +20,17 @@ func _ready() -> void:
 	if !debug_cloth:
 		$Debug_Cloth.queue_free()
 
+func _physics_process(delta: float) -> void:
+	player_glider.apply_central_force(wind_direction * wind_force_magnitude)
 
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is ElytraGlider2:
 		player_glider = body
-		player_glider.add_constant_central_force(wind_direction * wind_force_magnitude)
+		set_physics_process(true)
+		#player_glider.add_constant_central_force(wind_direction * wind_force_magnitude)
 
 func _on_body_exited(body: Node3D) -> void:
 	if body == player_glider:
-		player_glider.add_constant_central_force(wind_direction * wind_force_magnitude * -1.0)
+		set_physics_process(false)
+		#player_glider.add_constant_central_force(wind_direction * wind_force_magnitude * -1.0)
