@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=23 format=3 uid="uid://dp4pv4tev41gr"]
 
 [ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
 [ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
@@ -7,6 +7,24 @@
 [ext_resource type="Material" uid="uid://bhf6anoy7ga0a" path="res://Materials/GridBox.tres" id="4_1m6sy"]
 [ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="5_hi084"]
 [ext_resource type="PackedScene" uid="uid://chkn4lhq6i5m8" path="res://Scenes/tp_area.tscn" id="6_dmsko"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1m6sy"]
+friction = 0.5
+bounce = 0.35
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_el7fs"]
+size = Vector3(0.89, 0.77, 3.455)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vy0am"]
+size = Vector3(1, 0.135, 4)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hu5m1"]
+height = 2.99
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k8n50"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_t56ui"]
+size = Vector3(1.285, 0.98, 1.73)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dmsko"]
 
@@ -41,8 +59,39 @@ size = Vector3(3000, 2, 6026)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, -1.69879e-08, 8.57563e-08, 2.26267e-08, 0.89722, 0.441584, -8.44439e-08, 0.441584, -0.89722, -15.2671, 26.0978, -12.671)
 
+[node name="TestBody" type="RigidBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.707107, -0.707107, 0, 0.707107, -0.707107, 1, -3.09086e-08, -3.09086e-08, -98.1853, -474.344, 806.675)
+collision_mask = 12
+physics_material_override = SubResource("PhysicsMaterial_1m6sy")
+linear_velocity = Vector3(-50, -50, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106643, 0.196715, 0)
+shape = SubResource("BoxShape3D_el7fs")
+
+[node name="Mesh" type="Node3D" parent="TestBody"]
+
+[node name="Wing" type="MeshInstance3D" parent="TestBody/Mesh"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_vy0am")
+skeleton = NodePath("../..")
+
+[node name="Body" type="MeshInstance3D" parent="TestBody/Mesh"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0.32711, 0)
+mesh = SubResource("CapsuleMesh_hu5m1")
+skeleton = NodePath("../..")
+
+[node name="Arrow" type="MeshInstance3D" parent="TestBody/Mesh"]
+transform = Transform3D(3.62316e-16, -1.85862e-08, -0.147661, -0.189626, -1.85862e-08, 0, -8.28882e-09, 0.425203, -6.45447e-09, 0, 0.150445, 1.51316)
+mesh = SubResource("CylinderMesh_k8n50")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBody/Mesh/Arrow"]
+transform = Transform3D(1, -1.42109e-14, 0, 3.55271e-15, 1, 0, 0, 0, 1, 0, 1.46402, 0)
+mesh = SubResource("PrismMesh_t56ui")
+
 [node name="Glider V1" parent="." instance=ExtResource("1_ub46j")]
-transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -123, -486.13, 786)
+transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.77636e-15, 0, 1, -123, -492.13, 786)
 use_this_cam = true
 
 [node name="Glider V2" parent="." instance=ExtResource("2_hi084")]

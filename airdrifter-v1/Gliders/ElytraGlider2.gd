@@ -13,6 +13,9 @@ var old_forward_velo: Vector3
 ## The minimum length of forward velocity for the glider to be able to take off
 @export var stall_speed : float = 65.0
 
+var min_pitch : float = -70.0
+var max_pitch : float = 70.0
+
 ## A type that will change the behavior of the glider, and its controls[br]
 ## [b]NOTE[/b]: This is [u]DEFINITELY not the best way to implement this feature[/u]: all possible functionality in this one class, and changing what we do 
 ## with an if else statement. For future development, the strategy pattern or a state machine would be better, but I think that would entail refactoring a lot of code
@@ -81,6 +84,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	else:
 		for i in state.get_contact_count():
 			var contact_collider = state.get_contact_collider_object(i)
+			##TODO Use state.get_contact_collider_position(i)
+			
 			if contact_collider.get_collision_layer() == 4:
 				if forward_velocity.length() > stall_speed:
 					current_state = glider_state.ROLLING
@@ -90,10 +95,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				
 
 func _physics_process(delta: float) -> void:
-	#Clamping values to stop unwanted rotational behavior (my silly billy ahh ahh keeps forgetting
-	# to do deg_to_rad
-	rotation = rotation.clamp(Vector3(deg_to_rad(-70.0), -10, 0.0), Vector3(deg_to_rad(70.0), 10, 0.0))
-	
+	#Clamping values to stop unwanted rotational behavior 
+	rotation_degrees = rotation_degrees.clamp(Vector3(min_pitch, -360.0, 0.0), Vector3(max_pitch, 360.0, 0.0))
 	
 
 ## Input: a vector3 that represents the glider's forward velocity.
@@ -139,10 +142,12 @@ func handle_input():
 			apply_central_force(forward_dir * push_force)
 
 
-#func _on_body_entered(body: Node) -> void:
-	#print("hit something")
-	#if body.get_collision_layer() == 4:
-		#if forward_velocity.length() > stall_speed:
-			#current_state = glider_state.ROLLING
-		#else:
-			#current_state = glider_state.GROUNDED
+func _on_body_entered(body: Node) -> void:
+	print("hit something")
+	if body.get_collision_layer() == 4:
+		min_pitch = 0.0
+		print("Forcing Level")
+		await get_tree().create_timer(1.0).timeout
+		min_pitch = -70.0
+		print("level free")
+		

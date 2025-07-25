@@ -6,6 +6,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eub4b"]
 friction = 0.1
+absorbent = true
 
 [sub_resource type="Curve" id="Curve_6y5t4"]
 _limits = [-40.0, 40.0, -110.0, 110.0]
