@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=24 format=3 uid="uid://dp4pv4tev41gr"]
 
 [ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
 [ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
 [ext_resource type="Material" uid="uid://c5alf2fhab5i7" path="res://Materials/GroundGrid.tres" id="3_1m6sy"]
 [ext_resource type="Script" uid="uid://d0gthejuvixfb" path="res://debug_ui.gd" id="3_dmsko"]
 [ext_resource type="Material" uid="uid://bhf6anoy7ga0a" path="res://Materials/GridBox.tres" id="4_1m6sy"]
+[ext_resource type="PackedScene" uid="uid://d2lj8rt02opqj" path="res://Scenes/pause_ui.tscn" id="5_4o4mv"]
 [ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="5_hi084"]
 [ext_resource type="PackedScene" uid="uid://chkn4lhq6i5m8" path="res://Scenes/tp_area.tscn" id="6_dmsko"]
 
@@ -197,6 +198,9 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 61
 text = "Grounded"
 horizontal_alignment = 2
+
+[node name="Pause UI" parent="." instance=ExtResource("5_4o4mv")]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pr04o")
