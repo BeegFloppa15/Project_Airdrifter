@@ -48,7 +48,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	state.linear_velocity -= old_forward_velo
 	
 	# Pitch and rotate glider
-	handle_input()
+	handle_input(get_process_delta_time())
 	
 	# Finding forward DIRECTION (unit Vector)
 	var forward_local_axis: Vector3 = Vector3(0, 0, 1)
@@ -116,7 +116,7 @@ func find_lift(forward_velocity: Vector3):
 	var lift_force = min(forward_velocity.length() * 0.7, max_lift) 
 	return up_dir * lift_force
 
-func handle_input():
+func handle_input(delta: float):
 	# Player Input to handle glider direction
 	if Input.is_action_pressed("bank_left"):
 		apply_torque(Vector3(0, 1, 0) * rotation_torque)
@@ -126,6 +126,11 @@ func handle_input():
 	if current_state == glider_state.FLYING:
 		# Player input to handle chaning pitch
 		var left_vector = (global_transform.basis * Vector3.MODEL_LEFT).normalized()
+		if Input.is_action_pressed("brake"):
+			#level the glider out
+			var level_speed = 5.0
+			var t = (1.0 - cos(PI * (delta * level_speed)))/2.0
+			rotation_degrees.x = lerp(rotation_degrees.x, 0.0, t)
 		if Input.is_action_pressed("pitch_down"):
 			apply_torque(left_vector * rotation_torque)
 		if Input.is_action_pressed("pitch_up"):

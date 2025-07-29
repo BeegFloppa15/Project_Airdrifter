@@ -24,6 +24,15 @@ script = ExtResource("1_cf5hy")
 air_controls_img = ExtResource("2_srqh7")
 ground_controls_img = ExtResource("3_w3mym")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13, 0.13, 0.13, 0.623529)
+
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
