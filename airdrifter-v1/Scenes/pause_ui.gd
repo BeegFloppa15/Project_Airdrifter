@@ -7,7 +7,6 @@ var paused: bool
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	pause_game()
 
 func _on_controls_toggle_toggled(toggled_on: bool) -> void:
 	if toggled_on:

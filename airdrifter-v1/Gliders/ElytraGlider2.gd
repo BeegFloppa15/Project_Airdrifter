@@ -145,6 +145,9 @@ func handle_input(delta: float):
 		if Input.is_action_pressed("pitch_down"):
 			var push_force = 50.0
 			apply_central_force(forward_dir * push_force)
+		if Input.is_action_just_pressed("jump"):
+			var jump_force = 100.0
+			apply_central_impulse(Vector3.UP * jump_force)
 
 
 func _on_body_entered(body: Node) -> void:

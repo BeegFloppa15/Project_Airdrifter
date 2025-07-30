@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2stdr34k3da1"]
+
+[ext_resource type="Material" uid="uid://je3rbvgqmbs1" path="res://Materials/Debug_Cloth_Red.tres" id="1_vt5ah"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l1r46"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 12.22
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d82tc"]
+material = ExtResource("1_vt5ah")
+size = Vector2(5, 7.5)
+subdivide_width = 10
+subdivide_depth = 15
+
+[node name="Flag_Pole" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.00942, 0)
+mesh = SubResource("CylinderMesh_l1r46")
+
+[node name="Flag" type="SoftBody3D" parent="."]
+transform = Transform3D(4.37114e-08, 1, -3.82137e-15, 1, -4.37114e-08, -8.74228e-08, -8.74228e-08, 0, -1, 0, 3.48787, 3.72673)
+mesh = SubResource("PlaneMesh_d82tc")
+total_mass = 50.01
+linear_stiffness = 0.05
+pinned_points = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 1
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 2
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 3
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 4
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 5
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+attachments/6/point_index = 6
+attachments/6/spatial_attachment_path = NodePath("")
+attachments/6/offset = Vector3(0, 0, 0)
+attachments/7/point_index = 7
+attachments/7/spatial_attachment_path = NodePath("")
+attachments/7/offset = Vector3(0, 0, 0)
+attachments/8/point_index = 8
+attachments/8/spatial_attachment_path = NodePath("")
+attachments/8/offset = Vector3(0, 0, 0)
+attachments/9/point_index = 9
+attachments/9/spatial_attachment_path = NodePath("")
+attachments/9/offset = Vector3(0, 0, 0)
+attachments/10/point_index = 10
+attachments/10/spatial_attachment_path = NodePath("")
+attachments/10/offset = Vector3(0, 0, 0)
+attachments/11/point_index = 11
+attachments/11/spatial_attachment_path = NodePath("")
+attachments/11/offset = Vector3(0, 0, 0)

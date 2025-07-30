@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5m2yyd5ij0i2"]
+
+[ext_resource type="PackedScene" uid="uid://c2stdr34k3da1" path="res://Scenes/flag_pole.tscn" id="1_n3gyh"]
+
+[node name="Flag Pole 2" type="Node3D"]
+
+[node name="Flag_Pole" parent="." instance=ExtResource("1_n3gyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.00942, 0)
