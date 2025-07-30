@@ -6,6 +6,7 @@ var wind_direction: Vector3
 var player_glider: ElytraGlider2
 ## If true, a windsock will appear and indicate wind direction
 @export var debug_cloth: bool = true
+var _particle_emitter: GPUParticles3D
 
 func _ready() -> void:
 	# By default, physics process will be deactivated.
@@ -19,6 +20,20 @@ func _ready() -> void:
 	
 	if !debug_cloth:
 		$Debug_Cloth.queue_free()
+	
+	# Setting up the particle emitter
+	_particle_emitter = $GPUParticles3D
+	var wind_collison_shape: CollisionShape3D = get_child(2)
+	var process_mat = ParticleProcessMaterial.new()
+	
+	#_particle_emitter.rotation = get_node(wind_source_path).rotation
+	_particle_emitter.position = wind_collison_shape.position
+	print(wind_direction)
+	_particle_emitter.process_material.set_direction(wind_direction)
+	#_particle_emitter.rotation = wind_marker.rotation
+	
+	var particle_speed = wind_force_magnitude # We could divide by some number to set this lower if we need to
+	_particle_emitter.process_material.set_param(ParticleProcessMaterial.PARAM_INITIAL_LINEAR_VELOCITY, Vector2(particle_speed, particle_speed))
 
 func _physics_process(delta: float) -> void:
 	player_glider.apply_central_force(wind_direction * wind_force_magnitude)

@@ -28,8 +28,6 @@ func _process(delta: float) -> void:
 		#rotation.x = 0
 		rotation.x = get_parent_node_3d().rotation.x * -1.0
 	
-	top_level
-	
 	cam_rot_v = clamp(cam_rot_v, min_v_rotation, max_v_rotation)
 	
 	$Horz.rotation_degrees.y = lerp($Horz.rotation_degrees.y, cam_rot_h, delta * h_accel)

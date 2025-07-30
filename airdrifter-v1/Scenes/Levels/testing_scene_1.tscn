@@ -244,13 +244,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -13, 9)
 wind_force_magnitude = 100.0
 wind_source_path = NodePath("Marker3D")
 
-[node name="Marker3D" type="Marker3D" parent="Wind Areas/Wind Area"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
-gizmo_extents = 1.05
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wind Areas/Wind Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.5, -70.5, 163.5)
 shape = SubResource("BoxShape3D_hi084")
+
+[node name="Marker3D" type="Marker3D" parent="Wind Areas/Wind Area"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+gizmo_extents = 1.05
 
 [node name="Wind Area2" parent="Wind Areas" instance=ExtResource("5_hi084")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 200)
