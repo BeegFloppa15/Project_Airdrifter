@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2lj8rt02opqj"]
+[gd_scene load_steps=12 format=3 uid="uid://d2lj8rt02opqj"]
 
 [ext_resource type="Theme" uid="uid://cpuvqmnu7yk3b" path="res://Textures/pause_ui.tres" id="1_bthaf"]
 [ext_resource type="Script" uid="uid://dto7fxfnjvr5t" path="res://Scenes/pause_ui.gd" id="1_cf5hy"]
@@ -21,6 +21,10 @@ CheckButton/styles/focus = SubResource("StyleBoxEmpty_36amk")
 
 [sub_resource type="LabelSettings" id="LabelSettings_bthaf"]
 font_size = 51
+
+[sub_resource type="LabelSettings" id="LabelSettings_36amk"]
+font_size = 36
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Pause UI" type="Control"]
 layout_mode = 3
@@ -158,6 +162,22 @@ grow_vertical = 2
 theme = ExtResource("1_bthaf")
 text = "Quit Game
 "
+
+[node name="ME" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -293.0
+offset_top = -80.0
+offset_right = -40.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Game by Brody Graham"
+label_settings = SubResource("LabelSettings_36amk")
 
 [connection signal="toggled" from="Controls Toggle" to="." method="_on_controls_toggle_toggled"]
 [connection signal="pressed" from="Resume Button" to="." method="resume_game"]

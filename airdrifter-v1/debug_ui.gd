@@ -2,6 +2,12 @@ extends Control
 
 @export var glider_object : ElytraGlider2
 
+func _ready():
+	if StartStatus.menu_opened_once:
+		show()
+	else:
+		hide()
+
 func _process(delta: float) -> void:
 	$AltitudeLabel.set_text("Altitude: %0.2f" %glider_object.position.y)
 	$"Velocity Label".set_text("Velocity: %0.2f" %glider_object.linear_velocity.length())
@@ -16,3 +22,7 @@ func _process(delta: float) -> void:
 	else:
 		status_text = "Grounded"
 	$StatusLabel.set_text(status_text)
+
+
+func _on_welcome_ui_game_started() -> void:
+	show()

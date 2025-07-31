@@ -15,6 +15,10 @@ run/main_scene="uid://dp4pv4tev41gr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+StartStatus="*res://Scripts/start_status.gd"
+
 [debug]
 
 shapes/collision/draw_2d_outlines=false

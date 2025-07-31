@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=29 format=3 uid="uid://dp4pv4tev41gr"]
 
 [ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
 [ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://cpuvqmnu7yk3b" path="res://Textures/pause_ui.tres" id="5_el7fs"]
 [ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="5_hi084"]
 [ext_resource type="PackedScene" uid="uid://chkn4lhq6i5m8" path="res://Scenes/tp_area.tscn" id="6_dmsko"]
+[ext_resource type="PackedScene" uid="uid://d17pvnihegmli" path="res://Scripts/welcome_ui.tscn" id="7_k8n50"]
 [ext_resource type="PackedScene" uid="uid://cs72hkqq648ef" path="res://Scenes/Wind_Particles.tscn" id="9_hu5m1"]
 [ext_resource type="PackedScene" uid="uid://c5m2yyd5ij0i2" path="res://Scenes/flag_pole_2.tscn" id="10_vy0am"]
 
@@ -123,6 +124,7 @@ mesh = SubResource("BoxMesh_5fhe2")
 shape = SubResource("BoxShape3D_7hcdr")
 
 [node name="Debug UI" type="Control" parent="." node_paths=PackedStringArray("glider_object")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -239,6 +241,10 @@ text = "Pause"
 
 [node name="Pause UI" parent="." instance=ExtResource("5_4o4mv")]
 visible = false
+
+[node name="Welcome_UI" parent="." instance=ExtResource("7_k8n50")]
+offset_left = -2.0
+offset_right = -2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pr04o")
@@ -387,3 +393,5 @@ transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 
 
 [node name="Flag Pole 7" parent="Flags" instance=ExtResource("10_vy0am")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.721, -493.905, 796.57)
+
+[connection signal="game_started" from="Welcome_UI" to="Debug UI" method="_on_welcome_ui_game_started"]

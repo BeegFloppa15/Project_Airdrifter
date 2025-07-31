@@ -10,7 +10,7 @@ var h_accel = 10
 var v_accel = 10
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("free_look") and event is InputEventMouseMotion:
