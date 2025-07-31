@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs72hkqq648ef"]
+
+[ext_resource type="Material" uid="uid://j0n0oes7fpv7" path="res://Materials/WindParticlesProcessBase.tres" id="1_hn4pn"]
+
+[sub_resource type="Curve" id="Curve_gi7gj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prraa"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.85, 0.85, 0.85, 0.12549)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_p7kfj"]
+material = SubResource("StandardMaterial3D_prraa")
+size = 0.5
+section_segments = 15
+curve = SubResource("Curve_gi7gj")
+
+[node name="Wind_Particles" type="GPUParticles3D"]
+amount = 50
+lifetime = 3.0
+trail_enabled = true
+trail_lifetime = 1.0
+process_material = ExtResource("1_hn4pn")
+draw_pass_1 = SubResource("RibbonTrailMesh_p7kfj")

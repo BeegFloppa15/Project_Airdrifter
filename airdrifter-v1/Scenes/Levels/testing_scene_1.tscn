@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=28 format=3 uid="uid://dp4pv4tev41gr"]
 
 [ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
 [ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://cpuvqmnu7yk3b" path="res://Textures/pause_ui.tres" id="5_el7fs"]
 [ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="5_hi084"]
 [ext_resource type="PackedScene" uid="uid://chkn4lhq6i5m8" path="res://Scenes/tp_area.tscn" id="6_dmsko"]
+[ext_resource type="PackedScene" uid="uid://cs72hkqq648ef" path="res://Scenes/Wind_Particles.tscn" id="9_hu5m1"]
 [ext_resource type="PackedScene" uid="uid://c5m2yyd5ij0i2" path="res://Scenes/flag_pole_2.tscn" id="10_vy0am"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dmsko"]
@@ -30,15 +31,67 @@ size = Vector3(1000, 1000, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hi084"]
 size = Vector3(267, 159, 377)
 
+[sub_resource type="Curve" id="Curve_6i2bm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0a1q3"]
+curve = SubResource("Curve_6i2bm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hu5m1"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_0a1q3")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmsko"]
 size = Vector3(116, 212, 50)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k8n50"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_0a1q3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4o4mv"]
 size = Vector3(75, 110, 260)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t56ui"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_0a1q3")
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_el7fs"]
 height = 60.625
 radius = 11.01
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7wkt0"]
+emission_shape_offset = Vector3(0, 15.065, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 37.5
+emission_ring_radius = 8.3
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_0a1q3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1m6sy"]
 size = Vector3(3000, 2, 6026)
@@ -252,6 +305,9 @@ shape = SubResource("BoxShape3D_hi084")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
 gizmo_extents = 1.05
 
+[node name="Wind_Particles" parent="Wind Areas/Wind Area" instance=ExtResource("9_hu5m1")]
+process_material = SubResource("ParticleProcessMaterial_hu5m1")
+
 [node name="Wind Area2" parent="Wind Areas" instance=ExtResource("5_hi084")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 0, 200)
 wind_force_magnitude = 500.0
@@ -263,6 +319,9 @@ shape = SubResource("BoxShape3D_dmsko")
 
 [node name="Marker3D" type="Marker3D" parent="Wind Areas/Wind Area2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, 0, 0)
+
+[node name="Wind_Particles" parent="Wind Areas/Wind Area2" instance=ExtResource("9_hu5m1")]
+process_material = SubResource("ParticleProcessMaterial_k8n50")
 
 [node name="Wind Area3" parent="Wind Areas" instance=ExtResource("5_hi084")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -188.519, -480.794, 833.236)
@@ -277,6 +336,9 @@ shape = SubResource("BoxShape3D_4o4mv")
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 gizmo_extents = 10.0
 
+[node name="Wind_Particles" parent="Wind Areas/Wind Area3" instance=ExtResource("9_hu5m1")]
+process_material = SubResource("ParticleProcessMaterial_t56ui")
+
 [node name="Wind Area4" parent="Wind Areas" instance=ExtResource("5_hi084")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5876, -486.56, 796.033)
 wind_force_magnitude = 150.0
@@ -289,6 +351,9 @@ debug_fill = false
 
 [node name="Marker3D" type="Marker3D" parent="Wind Areas/Wind Area4"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
+
+[node name="Wind_Particles" parent="Wind Areas/Wind Area4" instance=ExtResource("9_hu5m1")]
+process_material = SubResource("ParticleProcessMaterial_7wkt0")
 
 [node name="TP_Debugging" type="Node" parent="."]
 
