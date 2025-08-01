@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://l1dbn37m4w21"]
+
+[ext_resource type="Script" uid="uid://d0gthejuvixfb" path="res://debug_ui.gd" id="1_dmshr"]
+[ext_resource type="Theme" uid="uid://cpuvqmnu7yk3b" path="res://Textures/pause_ui.tres" id="2_1288b"]
+
+[node name="Debug UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmshr")
+
+[node name="AltitudeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+offset_right = 302.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 61
+text = "Altitude: 0"
+
+[node name="AirspeedLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -154.0
+offset_right = 589.0
+offset_bottom = -70.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 61
+text = "Forward Airspeed: 0"
+
+[node name="Velocity Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+offset_right = 302.0
+offset_bottom = -71.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 61
+text = "Velocity: 0"
+
+[node name="AoA Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -327.0
+offset_top = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 61
+text = ": Pitch"
+horizontal_alignment = 2
+
+[node name="AccelLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -461.0
+offset_top = -154.0
+offset_right = 1.0
+offset_bottom = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 61
+text = ": Acceleration"
+horizontal_alignment = 2
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -231.0
+offset_top = -84.0
+offset_right = 231.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 61
+text = "Grounded"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 21.0
+offset_right = 111.0
+offset_bottom = 80.0
+theme = ExtResource("2_1288b")
+text = "Esc"
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_top = -22.5
+offset_right = 140.0
+offset_bottom = 22.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 41
+text = "Pause"

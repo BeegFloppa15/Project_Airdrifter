@@ -1,12 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://dp4pv4tev41gr"]
+[gd_scene load_steps=28 format=3 uid="uid://dp4pv4tev41gr"]
 
 [ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_ub46j"]
 [ext_resource type="PackedScene" uid="uid://0a23uy3u3iee" path="res://Gliders/glider_v_2.tscn" id="2_hi084"]
 [ext_resource type="Material" uid="uid://c5alf2fhab5i7" path="res://Materials/GroundGrid.tres" id="3_1m6sy"]
-[ext_resource type="Script" uid="uid://d0gthejuvixfb" path="res://debug_ui.gd" id="3_dmsko"]
 [ext_resource type="Material" uid="uid://bhf6anoy7ga0a" path="res://Materials/GridBox.tres" id="4_1m6sy"]
+[ext_resource type="PackedScene" uid="uid://l1dbn37m4w21" path="res://Scenes/debug_ui.tscn" id="4_hu5m1"]
 [ext_resource type="PackedScene" uid="uid://d2lj8rt02opqj" path="res://Scenes/pause_ui.tscn" id="5_4o4mv"]
-[ext_resource type="Theme" uid="uid://cpuvqmnu7yk3b" path="res://Textures/pause_ui.tres" id="5_el7fs"]
 [ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="5_hi084"]
 [ext_resource type="PackedScene" uid="uid://chkn4lhq6i5m8" path="res://Scenes/tp_area.tscn" id="6_dmsko"]
 [ext_resource type="PackedScene" uid="uid://d17pvnihegmli" path="res://Scripts/welcome_ui.tscn" id="7_k8n50"]
@@ -123,121 +122,7 @@ mesh = SubResource("BoxMesh_5fhe2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_7hcdr")
 
-[node name="Debug UI" type="Control" parent="." node_paths=PackedStringArray("glider_object")]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_dmsko")
-glider_object = NodePath("../Glider V1")
-
-[node name="AltitudeLabel" type="Label" parent="Debug UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -84.0
-offset_right = 302.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 61
-text = "Altitude: 0"
-
-[node name="AirspeedLabel" type="Label" parent="Debug UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -154.0
-offset_right = 589.0
-offset_bottom = -70.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 61
-text = "Forward Airspeed: 0"
-
-[node name="Velocity Label" type="Label" parent="Debug UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -155.0
-offset_right = 302.0
-offset_bottom = -71.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 61
-text = "Velocity: 0"
-
-[node name="AoA Label" type="Label" parent="Debug UI"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -327.0
-offset_top = -84.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 61
-text = ": Pitch"
-horizontal_alignment = 2
-
-[node name="AccelLabel" type="Label" parent="Debug UI"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -461.0
-offset_top = -154.0
-offset_right = 1.0
-offset_bottom = -70.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 61
-text = ": Acceleration"
-horizontal_alignment = 2
-
-[node name="StatusLabel" type="Label" parent="Debug UI"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -462.0
-offset_bottom = 84.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 61
-text = "Grounded"
-horizontal_alignment = 2
-
-[node name="Button" type="Button" parent="Debug UI"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 21.0
-offset_right = 111.0
-offset_bottom = 80.0
-theme = ExtResource("5_el7fs")
-text = "Esc"
-
-[node name="Label" type="Label" parent="Debug UI/Button"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 3.0
-offset_top = -22.5
-offset_right = 140.0
-offset_bottom = 22.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 41
-text = "Pause"
+[node name="Debug UI" parent="." instance=ExtResource("4_hu5m1")]
 
 [node name="Pause UI" parent="." instance=ExtResource("5_4o4mv")]
 visible = false
@@ -393,5 +278,3 @@ transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 
 
 [node name="Flag Pole 7" parent="Flags" instance=ExtResource("10_vy0am")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.721, -493.905, 796.57)
-
-[connection signal="game_started" from="Welcome_UI" to="Debug UI" method="_on_welcome_ui_game_started"]

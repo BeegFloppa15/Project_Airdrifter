@@ -34,15 +34,15 @@ func _ready() -> void:
 	if wind_collison_shape.shape is BoxShape3D:
 		particle_material.set_emission_shape(ParticleProcessMaterial.EMISSION_SHAPE_BOX) 
 		particle_material.set_emission_box_extents(wind_collison_shape.shape.size)
-		var volume: int = wind_collison_shape.shape.size.x * wind_collison_shape.shape.size.y * wind_collison_shape.shape.size.z
-		_particle_emitter.amount = ( volume / 30000)
+		#var volume: int = wind_collison_shape.shape.size.x * wind_collison_shape.shape.size.y * wind_collison_shape.shape.size.z
+		#_particle_emitter.amount = ( volume / 30000)
 	elif wind_collison_shape.shape is CylinderShape3D:
 		particle_material.set_emission_shape(ParticleProcessMaterial.EMISSION_SHAPE_RING)
 		particle_material.set_emission_ring_height(wind_collison_shape.shape.height)
 		particle_material.set_emission_ring_radius(wind_collison_shape.shape.radius * 0.75)
-		var volume: int = PI * pow(wind_collison_shape.shape.radius, 2) * wind_collison_shape.shape.height
-		_particle_emitter.amount = volume/30000
-		print(volume/30000)
+		#var volume: int = PI * pow(wind_collison_shape.shape.radius, 2) * wind_collison_shape.shape.height
+		#_particle_emitter.amount = volume/30000
+		#print(volume/30000)
 	
 	var particle_speed = wind_force_magnitude / 5.0 # We could divide by some number to set this lower if we need to
 	_particle_emitter.process_material.set_param(ParticleProcessMaterial.PARAM_INITIAL_LINEAR_VELOCITY, Vector2(particle_speed, particle_speed))

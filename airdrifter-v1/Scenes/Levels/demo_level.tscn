@@ -1,0 +1,332 @@
+[gd_scene load_steps=33 format=3 uid="uid://dycjg7k1ufshk"]
+
+[ext_resource type="PackedScene" uid="uid://daa4md30g68ha" path="res://Gliders/glider_v_1.tscn" id="1_pgh3k"]
+[ext_resource type="PackedScene" uid="uid://d2lj8rt02opqj" path="res://Scenes/pause_ui.tscn" id="2_t3tkk"]
+[ext_resource type="PackedScene" uid="uid://l1dbn37m4w21" path="res://Scenes/debug_ui.tscn" id="3_h73y6"]
+[ext_resource type="PackedScene" uid="uid://d17pvnihegmli" path="res://Scripts/welcome_ui.tscn" id="3_vm0nt"]
+[ext_resource type="Material" uid="uid://c5alf2fhab5i7" path="res://Materials/GroundGrid.tres" id="4_2msns"]
+[ext_resource type="PackedScene" uid="uid://chkn4lhq6i5m8" path="res://Scenes/tp_area.tscn" id="4_nx0tq"]
+[ext_resource type="Material" uid="uid://bhf6anoy7ga0a" path="res://Materials/GridBox.tres" id="5_fo5xj"]
+[ext_resource type="PackedScene" uid="uid://b7q3mc7feqq3s" path="res://Scenes/wind_area.tscn" id="7_wf5it"]
+[ext_resource type="PackedScene" uid="uid://cs72hkqq648ef" path="res://Scenes/Wind_Particles.tscn" id="8_36hte"]
+[ext_resource type="PackedScene" uid="uid://c5m2yyd5ij0i2" path="res://Scenes/flag_pole_2.tscn" id="9_36hte"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2msns"]
+
+[sub_resource type="Sky" id="Sky_h73y6"]
+sky_material = SubResource("PhysicalSkyMaterial_2msns")
+
+[sub_resource type="Environment" id="Environment_fo5xj"]
+background_mode = 2
+sky = SubResource("Sky_h73y6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wf5it"]
+material = ExtResource("5_fo5xj")
+flip_faces = true
+size = Vector3(1000, 1000, 1000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0klo"]
+material = ExtResource("4_2msns")
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6g4ik"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_36hte"]
+material = ExtResource("4_2msns")
+size = Vector3(500, 1, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0klo"]
+size = Vector3(500, 1, 500)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6g4ik"]
+material = ExtResource("4_2msns")
+size = Vector3(150, 1, 150)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wm6ye"]
+size = Vector3(150, 1, 150)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i4r4e"]
+material = ExtResource("4_2msns")
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7inyo"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i4r4e"]
+size = Vector3(41, 15, 17)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5o42i"]
+size = Vector3(100, 37, 152)
+
+[sub_resource type="Curve" id="Curve_6i2bm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0a1q3"]
+curve = SubResource("Curve_6i2bm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7inyo"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_0a1q3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l7087"]
+size = Vector3(336, 67, 96)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sjafb"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_0a1q3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sjafb"]
+size = Vector3(30, 58, 30)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wm6ye"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_0a1q3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_36hte"]
+size = Vector3(9000, 10, 9000)
+
+[node name="Demo Level" type="Node"]
+
+[node name="Welcome_UI" parent="." instance=ExtResource("3_vm0nt")]
+
+[node name="Debug UI" parent="." node_paths=PackedStringArray("glider_object") instance=ExtResource("3_h73y6")]
+visible = false
+glider_object = NodePath("../Glider V1")
+
+[node name="Pause UI" parent="." instance=ExtResource("2_t3tkk")]
+visible = false
+
+[node name="Glider V1" parent="." instance=ExtResource("1_pgh3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 969, -472)
+use_this_cam = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.223676, 0.974664, 0, -0.974664, -0.223676, 0, 4.69766, 0)
+light_energy = 1.155
+light_indirect_energy = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fo5xj")
+
+[node name="Level Environment" type="Node" parent="."]
+
+[node name="Grid Box" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box3" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 500, 0)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box2" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 500, 0)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box7" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, -1000)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box8" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 500, -1000)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box9" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 500, -1000)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box4" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 1000)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box5" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1000, 500, 1000)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Grid Box6" type="MeshInstance3D" parent="Level Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 500, 1000)
+visible = false
+mesh = SubResource("BoxMesh_wf5it")
+skeleton = NodePath("../..")
+
+[node name="Island Platforms" type="Node" parent="Level Environment"]
+
+[node name="Start Platform" type="MeshInstance3D" parent="Level Environment/Island Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.337919, 967.738, -462.995)
+mesh = SubResource("BoxMesh_w0klo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level Environment/Island Platforms/Start Platform"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Island Platforms/Start Platform/StaticBody3D"]
+shape = SubResource("BoxShape3D_6g4ik")
+
+[node name="Bottom Big Platform" type="MeshInstance3D" parent="Level Environment/Island Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.338, 1, 245.005)
+mesh = SubResource("BoxMesh_36hte")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level Environment/Island Platforms/Bottom Big Platform"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Island Platforms/Bottom Big Platform/StaticBody3D"]
+shape = SubResource("BoxShape3D_w0klo")
+
+[node name="Mid Air Platform" type="MeshInstance3D" parent="Level Environment/Island Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -327.338, 621, -317.995)
+mesh = SubResource("BoxMesh_6g4ik")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level Environment/Island Platforms/Mid Air Platform"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Island Platforms/Mid Air Platform/StaticBody3D"]
+shape = SubResource("BoxShape3D_wm6ye")
+
+[node name="Box" type="MeshInstance3D" parent="Level Environment/Island Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -327.338, 622.388, -317.995)
+mesh = SubResource("BoxMesh_i4r4e")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level Environment/Island Platforms/Box"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Island Platforms/Box/StaticBody3D"]
+shape = SubResource("BoxShape3D_7inyo")
+
+[node name="Flag Pole 2" parent="Level Environment/Island Platforms" instance=ExtResource("9_36hte")]
+transform = Transform3D(0.733208, 0, 0.680005, 0, 1, 0, -0.680005, 0, 0.733208, -274.559, 622.388, -244.502)
+
+[node name="Wind Areas" type="Node" parent="Level Environment"]
+
+[node name="Start Wind Area" parent="Level Environment/Wind Areas" instance=ExtResource("7_wf5it")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.234163, 975.04, -447.69)
+wind_force_magnitude = 100.0
+wind_source_path = NodePath("Marker3D")
+debug_cloth = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Wind Areas/Start Wind Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 1)
+shape = SubResource("BoxShape3D_i4r4e")
+
+[node name="Marker3D" type="Marker3D" parent="Level Environment/Wind Areas/Start Wind Area"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+gizmo_extents = 4.3
+
+[node name="Wind_Particles" parent="Level Environment/Wind Areas/Start Wind Area" instance=ExtResource("8_36hte")]
+amount = 45
+
+[node name="Mid Air Wind" parent="Level Environment/Wind Areas" instance=ExtResource("7_wf5it")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -348.766, 625.04, -240.69)
+wind_force_magnitude = 200.0
+wind_source_path = NodePath("Marker3D")
+debug_cloth = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Wind Areas/Mid Air Wind"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, -10, 68.5)
+shape = SubResource("BoxShape3D_5o42i")
+
+[node name="Marker3D" type="Marker3D" parent="Level Environment/Wind Areas/Mid Air Wind"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+gizmo_extents = 4.3
+
+[node name="Wind_Particles" parent="Level Environment/Wind Areas/Mid Air Wind" instance=ExtResource("8_36hte")]
+amount = 125
+process_material = SubResource("ParticleProcessMaterial_7inyo")
+
+[node name="Bottom Wind horz" parent="Level Environment/Wind Areas" instance=ExtResource("7_wf5it")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.244, 19.0281, 449.171)
+wind_force_magnitude = 450.0
+wind_source_path = NodePath("Marker3D")
+debug_cloth = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Wind Areas/Bottom Wind horz"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.5, 15, -0.5)
+shape = SubResource("BoxShape3D_l7087")
+
+[node name="Marker3D" type="Marker3D" parent="Level Environment/Wind Areas/Bottom Wind horz"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+gizmo_extents = 4.3
+
+[node name="Wind_Particles" parent="Level Environment/Wind Areas/Bottom Wind horz" instance=ExtResource("8_36hte")]
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_sjafb")
+
+[node name="Wind Area" parent="Level Environment/Wind Areas" instance=ExtResource("7_wf5it")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170, 0, 138)
+wind_force_magnitude = 150.0
+wind_source_path = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Environment/Wind Areas/Wind Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.5, 0)
+shape = SubResource("BoxShape3D_sjafb")
+
+[node name="Marker3D" type="Marker3D" parent="Level Environment/Wind Areas/Wind Area"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 10, 0)
+gizmo_extents = 1.0
+
+[node name="Wind_Particles" parent="Level Environment/Wind Areas/Wind Area" instance=ExtResource("8_36hte")]
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_wm6ye")
+
+[node name="Flag Pole 2" parent="Level Environment" instance=ExtResource("9_36hte")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9592, 968.569, -453.08)
+
+[node name="Flag Pole 3" parent="Level Environment" instance=ExtResource("9_36hte")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 221, 0, 403)
+
+[node name="Flag Pole 4" parent="Level Environment" instance=ExtResource("9_36hte")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 221, 0, 489)
+
+[node name="Flag Pole 5" parent="Level Environment" instance=ExtResource("9_36hte")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 403)
+
+[node name="Flag Pole 6" parent="Level Environment" instance=ExtResource("9_36hte")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 489)
+
+[node name="TP_Area" parent="." node_paths=PackedStringArray("height_marker") instance=ExtResource("4_nx0tq")]
+height_marker = NodePath("Marker3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TP_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+shape = SubResource("BoxShape3D_36hte")
+
+[node name="Marker3D" type="Marker3D" parent="TP_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
+
+[connection signal="game_started" from="Welcome_UI" to="Debug UI" method="_on_welcome_ui_game_started"]
