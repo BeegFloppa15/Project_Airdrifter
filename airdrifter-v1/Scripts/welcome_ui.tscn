@@ -66,13 +66,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -901.0
-offset_top = -190.0
-offset_right = 395.0
-offset_bottom = 510.0
+offset_left = -1009.0
+offset_top = -300.0
+offset_right = 287.0
+offset_bottom = 400.0
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.650721, 0.650721)
+scale = Vector2(0.816563, 0.816563)
 texture = ExtResource("1_62m5k")
 
 [node name="Controls Toggle" type="CheckButton" parent="."]
@@ -82,10 +82,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -965.0
-offset_top = 21.0001
-offset_right = 7.0
-offset_bottom = 569.0
+offset_left = -1016.0
+offset_top = -4.99994
+offset_right = -44.0
+offset_bottom = 543.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(1, 0.990872)
@@ -141,7 +141,8 @@ My vision for this game was that players were stranded on a remote island, and u
 I ended up focusing exclusively on developing the 3D glider mechanics with wind streams. I hope to continue developing airdrifters in the future, but for now, enjoy what I’ve got so far!
 
 Brody
-"
+
+P.S: Don't worry too much about the white walls and floor, they aren't actually real!"
 label_settings = SubResource("LabelSettings_opsdc")
 autowrap_mode = 2
 
